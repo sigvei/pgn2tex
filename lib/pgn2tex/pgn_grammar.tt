@@ -1,0 +1,105 @@
+grammar PGN
+  rule database
+    game* <Database>
+  end
+
+  rule game
+    space? tag_pairs space? movetext space? <Game>
+  end
+
+  rule tag_pairs
+    tag_pair* <Tags>
+  end
+
+  rule tag_pair
+    "[" tag_name "," space? '"' tag_data '"' space? "]" <Tag>
+  end
+
+  rule tag_name
+    [\w]+ <TagName>
+  end
+
+  rule tag_data
+    [\w]* <StringLiteral>
+  end
+
+  rule movetext
+    (move space?)+ result? <Moves>
+  end
+
+  rule move
+    move_number space? ((half_move space? half_move) / half_move) <FullMove>
+  end
+
+  rule move_number
+    [0-9]+ ("." / "...") <MoveNumberIndicator>
+  end
+
+  rule half_move
+    san move_addenda? <HalfMove>
+  end
+  
+  rule move_addenda
+    space? ((nag space?) / (variant space?) / (comment space?))*
+  end
+
+  rule san
+    "O-O-O"
+    /
+    "O-O"
+    /
+    piece? capture? (((square / file / rank)? square) / square) promotion? (check / mate)? <SAN>
+  end
+
+  rule piece
+    "K" / "Q" / "R" / "B" / "N" / "P"
+  end
+
+  rule file
+    [a-h]
+  end
+
+  rule rank
+    [1-8]
+  end
+
+  rule square
+    file rank
+  end
+
+  rule capture
+    "x"
+  end
+
+  rule check
+    "+"
+  end
+
+  rule mate
+    "#"
+  end
+
+  rule promotion
+    "=" piece
+  end
+
+  rule result
+    "1/2-1/2" / "1-0" / "0-1" / "*"
+  end
+
+  rule nag
+    "$" [0-9]+
+  end
+
+  rule variant
+    "(" movetext ")" <Variant>
+  end
+
+  rule comment
+    "{" [^}]* "}" / ";" [^\n]* "\n" <Comment>
+  end
+
+  rule space
+    [ \t]+
+  end
+end

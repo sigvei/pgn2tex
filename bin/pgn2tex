@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'pgn2tex'
+
+parser = Pgn2tex::Parser.new
