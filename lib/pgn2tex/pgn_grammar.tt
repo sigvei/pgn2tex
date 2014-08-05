@@ -8,7 +8,7 @@ grammar PGN
   end
 
   rule tag_pairs
-    tag_pair* <Tags>
+    (tag:tag_pair space?)* <Tags>
   end
 
   rule tag_pair
@@ -16,11 +16,11 @@ grammar PGN
   end
 
   rule tag_name
-    [\w]+ <TagName>
+    [A-Za-z0-9_]+ <TagName>
   end
 
   rule tag_data
-    [\w]* <StringLiteral>
+    [^"]* <StringLiteral>
   end
 
   rule movetext
@@ -100,6 +100,6 @@ grammar PGN
   end
 
   rule space
-    [ \t]+
+    [ \t\n]+
   end
 end

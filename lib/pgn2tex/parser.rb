@@ -9,5 +9,9 @@ module Pgn2tex
     def parse_pgn(pgn)
       @parser.parse(pgn)
     end
+
+    def parser
+      @parser
+    end
   end
 end
