@@ -96,10 +96,10 @@ grammar PGN
   end
 
   rule comment
-    "{" [^}]* "}" / ";" [^\n]* "\n" <Comment>
+    ("{" [^}]* "}") / (";" [^\n]* "\n") <Comment>
   end
 
   rule space
-    [ \t\n]+
+    [ \t\n\r]+
   end
 end
