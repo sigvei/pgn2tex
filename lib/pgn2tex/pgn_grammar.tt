@@ -48,7 +48,7 @@ grammar PGN
     /
     "O-O"
     /
-    piece? capture? (((square / file / rank)? square) / square) promotion? (check / mate)? <SAN>
+    piece? (((square / file / rank)? capture? square) / (capture? square)) promotion? (check / mate)? <SAN>
   end
 
   rule piece
