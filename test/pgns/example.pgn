@@ -1,0 +1,17 @@
+[Event "24th Chess.com Thematic Tournament - King's Indian Defense (1401-1600) - Round 1"]
+[Site "Chess.com"]
+[Date "2014.08.01"]
+[White "badadamtude"]
+[Black "sigvei"]
+[Result "1-0"]
+[ECO "E61"]
+[WhiteElo "1558"]
+[BlackElo "1424"]
+[TimeControl "1 in 3 days"]
+[Termination "badadamtude won by resignation"]
+
+1.d4 Nf6 2.c4 g6 3.Nc3 {Thematic Game - This is the starting position.} 
+ d5 4.Nf3 Bg7 5.e3 O-O 6.cxd5 Nxd5 7.e4 Nxc3 8.bxc3 c5 9.Bc4 Bg4 10.Be3 Nc6
+ 11.e5 e6 12.Qd2 Na5 13.Be2 Bxf3 14.Bxf3 Nc4 15.Qc1 Qa5 16.O-O b6 17.Bh6 Bxh6 18.Qxh6 Qxc3 19.Rae1 Nd2 20.Re3 Qxd4
+ 21.Rfe1 Nxf3+ 22.Rxf3 Rad8 23.Rh3 Rfe8 24.Qxh7+ Kf8 25.Qh8+ Ke7 26.Qf6+ Kd7 27.Qxf7+ Kc8 28.Rh7 Qd7 29.Qxg6 Qd1 30.Qe4 Qd5
+ 31.Qe2 Rg8 32.Qa6+ 1-0
