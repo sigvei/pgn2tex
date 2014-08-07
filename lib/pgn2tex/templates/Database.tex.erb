@@ -1,0 +1,15 @@
+\documentclass[twocolumn]{article}
+
+\include{texmate}
+
+\title{Chess games}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+<% @object.games.each do |game| %>
+  <%= game.to_tex %>
+<% end %>
+
+\end{document}

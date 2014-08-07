@@ -10,6 +10,7 @@ module PGN
     def to_tex
       filename = File.join(File.dirname(__FILE__), "templates", class_name + ".tex.erb")
       template = File.read(filename)
+      @object = self
       ERB.new(template).result(binding)
     end
   end

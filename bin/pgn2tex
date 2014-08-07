@@ -58,7 +58,8 @@ begin
       if parsed_file.nil?
         STDERR.puts "#{fname} did not contain PGN data"
       else
-        options.output << parser.parse_pgn(f.read).to_tex
+        STDERR.puts "#{fname}: #{parsed_file.inspect}"
+        options.output << parsed_file.to_tex
       end
     end
   end

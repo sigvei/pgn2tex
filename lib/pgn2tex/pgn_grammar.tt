@@ -12,7 +12,7 @@ grammar PGN
   end
 
   rule tag_pair
-    "[" tag_name "," space? '"' tag_data '"' space? "]" <Tag>
+    "[" tag_name space '"' tag_data '"' space? "]" <Tag>
   end
 
   rule tag_name
