@@ -24,7 +24,7 @@ grammar PGN
   end
 
   rule movetext
-    (move space?)+ result? <Moves>
+    moves:(move space?)+ result? <Moves>
   end
 
   rule move
@@ -84,7 +84,7 @@ grammar PGN
   end
 
   rule result
-    "1/2-1/2" / "1-0" / "0-1" / "*"
+    ("1/2-1/2" / "1-0" / "0-1" / "*") <Result>
   end
 
   rule nag

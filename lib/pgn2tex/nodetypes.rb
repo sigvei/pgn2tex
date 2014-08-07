@@ -11,7 +11,23 @@ module PGN
       filename = File.join(File.dirname(__FILE__), "templates", class_name + ".tex.erb")
       template = File.read(filename)
       @object = self
-      ERB.new(template).result(binding)
+      ERB.new(template, 0, "-").result(binding)
+    end
+  end
+
+  module Result
+    def to_tex
+      val = respond_to?(:text_value) ? text_value : to_s
+      case val
+      when "1-0"
+        "\\whitewins"
+      when "0-1"
+        "\\blackwins"
+      when "1/2-1/2"
+        "\\drawn"
+      else
+        ""
+      end
     end
   end
 
@@ -39,7 +55,7 @@ module PGN
     end
 
     def moves
-      movetext
+      movetext.elements.first.elements.map &:move
     end
 
     def white
@@ -55,7 +71,7 @@ module PGN
     end
 
     def result
-      metadata["Result"] || "*"  # Add finding result from movetext
+      result_from_metadata || result_from_movetext
     end
 
     def site
@@ -80,6 +96,24 @@ module PGN
 
     def inspect
       "<" + [names, result, (year || "?").to_s, site].join("\t") + ">"
+    end
+
+    private
+
+    def result_from_metadata
+      if metadata["Result"]
+        metadata["Result"].extend Result
+      else
+        nil
+      end
+    end
+
+    def result_from_movetext
+      if movetext.elements.last.is_a? Result
+        movetext.elements.last
+      else
+        nil
+      end
     end
   end
   

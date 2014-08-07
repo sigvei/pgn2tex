@@ -1,6 +1,29 @@
-\whitename{<%= @object.white %>}
-\blackname{<%= @object.black %>}
+<% ["White", "Black"].each do |col| %>
+  \<%= col.downcase %>name{<%= @object.send col.downcase %>}
+  <% elo = @object.metadata["#{col}Elo"] %>
+  <% if elo %>
+    \<%= col.downcase %>elo{<%= elo %>}
+  <% end %>
+<% end %>
+
 \chessevent{<%= @object.site %>, <%= @object.year %>}
-\ECO{<%= (@object.metadata["ECO"] || "") %>}
+
+<% if @object.metadata["ECO"] %>
+  \ECO{<%= (@object.metadata["ECO"] || "") %>}
+<% end %>
+
+<% if @object.metadata["Opening"] %>
+  \chessopening{<%= @object.metadata["Opening"] %>}
+<% end %>
 
 \makegametitle
+
+\begin{texmate}
+<% @object.moves.each do |move| -%>
+  <%= move.text_value -%>
+<% end -%>
+
+<%= @object.result.to_tex %>
+\end{texmate}
+
+\makediagram
