@@ -1,6 +1,6 @@
 \whitename{<%= @object.white %>}
 \blackname{<%= @object.black %>}
 \chessevent{<%= @object.site %>, <%= @object.year %>}
-\ECO{<%= @object.metadata["ECO"] || ""}
+\ECO{<%= (@object.metadata["ECO"] || "") %>}
 
 \makegametitle
