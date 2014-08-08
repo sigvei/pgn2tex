@@ -18,12 +18,8 @@
 
 \makegametitle
 
-\begin{texmate}
-<% @object.moves.each do |move| -%>
-  <%= move.text_value -%>
-<% end -%>
+|<%= @object.moves.map(&:to_tex).join(" ")%>
+\toD{<%= texescape(@object.moves.last.halfmoves.last.san.text_value) %>}
+<%= @object.result.to_tex -%>|
 
-<%= @object.result.to_tex %>
-\end{texmate}
-
-\makediagram
+\makediagrams

@@ -13,6 +13,10 @@ module PGN
       @object = self
       ERB.new(template, 0, "-").result(binding)
     end
+
+    def texescape(string)
+      string.gsub("#", "\\#")
+    end
   end
 
   module Result
@@ -150,18 +154,40 @@ module PGN
   end
 
   class FullMove < Node
+    def halfmoves
+      raw = elements.last
+      if raw.is_a? HalfMove
+        [ raw ]
+      elsif raw.elements.count == 3
+        raw.elements.select {|e| e.is_a? HalfMove}
+      end
+    end
   end
 
   class MoveNumberIndicator < Node
   end
 
   class HalfMove < Node
+    def addenda?
+      addenda.count > 0
+    end
+
+    def addenda
+      if elements[1]
+        elements[1].elements || []
+      else
+        []
+      end
+    end
   end
 
   class SAN < Node
   end
 
   class Variant < Node
+    def moves
+      movetext.elements.first.elements.map &:move
+    end
   end
   
   class Comment < Node

@@ -32,7 +32,7 @@ grammar PGN
   end
 
   rule move_number
-    [0-9]+ ("." / "...") <MoveNumberIndicator>
+    [0-9]+ ("..." / ".") <MoveNumberIndicator>
   end
 
   rule half_move
@@ -40,7 +40,7 @@ grammar PGN
   end
   
   rule move_addenda
-    space? ((nag space?) / (variant space?) / (comment space?))*
+    (nag / variant / comment / space)*
   end
 
   rule san
@@ -76,7 +76,11 @@ grammar PGN
   end
 
   rule mate
-    "#"
+    "#" {
+	def to_s
+		"\\#"
+	end
+	}
   end
 
   rule promotion
@@ -96,7 +100,9 @@ grammar PGN
   end
 
   rule comment
-    ("{" [^}]* "}") / (";" [^\n]* "\n") <Comment>
+    "{" [^}]* "}" <Comment>
+    /
+    ";" [^\n]* "\n" <Comment>
   end
 
   rule space

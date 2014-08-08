@@ -1,0 +1,6 @@
+<%= texescape(@object.san.text_value) -%>
+<% @object.addenda.each do |addendum| -%>
+  <% if addendum.respond_to?(:to_tex) -%>
+    <%= addendum.to_tex -%>
+  <% end -%>
+<% end -%>
