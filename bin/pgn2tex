@@ -64,7 +64,7 @@ begin
     end
   end
 rescue Exception => e
-  abort("Error occured: #{e.message}")
+  abort("Error occured: #{e}")
 ensure
   options.output.close
 end
